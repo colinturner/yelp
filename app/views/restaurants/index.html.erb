@@ -1,6 +1,10 @@
 <h1>Listing restaurants</h1>
 
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<%= link_to 'Add a restaurant', new_restaurant_path %>
+
+<% if @restaurants.empty? %>
+<p>No restaurant yet<p>
+<% end %>
 
 <table>
   <tr>
@@ -13,6 +17,7 @@
     <td><%= restaurant.name %></td>
     <td><%= restaurant.description %></td>
     <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
+    <td><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %></td>
   </tr>
   <% end %>
 </table>

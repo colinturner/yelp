@@ -78,6 +78,27 @@ feature 'restaurants' do
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
+
+    scenario "user tries to delete someone else's restaurant" do
+      visit '/'
+      # First user adds a restaurant
+      click_link "Add a restaurant"
+      fill_in 'Name', with: 'Subway'
+      fill_in 'Description', with: 'Sandwiches and cookies'
+      click_button 'Save Restaurant'
+      click_link 'Sign out'
+      # Second user signs up
+      click_link 'Sign up'
+      fill_in 'Email', with: "colin@colin.colin"
+      fill_in 'Password', with: "colincolin"
+      fill_in 'Password confirmation', with: "colincolin"
+      click_link 'Sign up'
+      expect(page).to have_content 'Sandwiches and cookies'
+      # Second user tries to delete first user's restaurant
+      click_link 'Delete Subway'
+      expect(page).to have_content "You can only delete restaurants you've added yourself"
+
+    end
   end
 
   context 'user not signed in' do

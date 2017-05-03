@@ -92,7 +92,7 @@ feature 'restaurants' do
       fill_in 'Email', with: "colin@colin.colin"
       fill_in 'Password', with: "colincolin"
       fill_in 'Password confirmation', with: "colincolin"
-      click_link 'Sign up'
+      click_button 'Sign up'
       expect(page).to have_content 'Sandwiches and cookies'
       # Second user tries to delete first user's restaurant
       click_link 'Delete Subway'

@@ -40,6 +40,7 @@ gem 'pry'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'shoulda'
+gem 'database_cleaner'
 
 group :development, :test do
   gem 'rspec-rails'
